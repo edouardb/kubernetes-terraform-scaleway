@@ -1,0 +1,8 @@
+*
+!.gitignore
+!kubernetes.tf
+!make-files.sh
+!output.tf
+!sample.terraform.tfvars
+!vars.tf
+!README.md
