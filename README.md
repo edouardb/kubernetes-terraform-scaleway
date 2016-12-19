@@ -13,7 +13,7 @@ Copy `sample.terraform.tfvars` to `terraform.tfvars` and insert your variables.
 
 
 ```bash
-$ brew update && brew install kubect terraform
+$ brew update && brew install kubectl terraform
 
 $ terraform plan
 
