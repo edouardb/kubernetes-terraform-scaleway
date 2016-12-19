@@ -19,15 +19,14 @@ do
     'master')
       suid=\$(scw-metadata --cached ID)
       public_ip=\$(scw-metadata --cached PUBLIC_IP_ADDRESS)
-      private_ip=\$(scw-metadata --cached PUBLIC_IP_ADDRESS)
+      private_ip=\$(scw-metadata --cached PRIVATE_IP)
 
 
-      kubeadm --token=$TOKEN init --api-advertise-addresses=\$public_ip --api-external-dns-names=\$suid.pub.cloud.scaleway.com
-      curl -O http://docs.projectcalico.org/v1.6/getting-started/kubernetes/installation/hosted/kubeadm/calico.yaml
+      kubeadm --token=$TOKEN --api-advertise-addresses=\$public_ip --api-external-dns-names=\$suid.pub.cloud.scaleway.com init
       curl -O https://rawgit.com/kubernetes/dashboard/master/src/deploy/kubernetes-dashboard.yaml
       git clone https://github.com/kubernetes/heapster.git
+      kubectl create -f http://docs.projectcalico.org/v2.0/getting-started/kubernetes/installation/hosted/kubeadm/calico.yaml
       kubectl create -f heapster/deploy/kube-config/influxdb/
-      kubectl create -f calico.yaml
       kubectl create -f kubernetes-dashboard.yaml
       break
       ;;
