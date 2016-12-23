@@ -38,7 +38,7 @@ resource "scaleway_server" "kubernetes_master" {
   }
 
   provisioner "remote-exec" {
-    inline = "bash /tmp/scw-install.sh master"
+    inline = "KUBERNETES_TOKEN=\"${var.kubernetes_token}\" bash /tmp/scw-install.sh master"
   }
 
 }
@@ -62,7 +62,7 @@ resource "scaleway_server" "kubernetes_slave" {
     destination = "/tmp/scw-install.sh"
   }
   provisioner "remote-exec" {
-    inline = "bash /tmp/scw-install.sh slave"
+    inline = "KUBERNETES_TOKEN=\"${var.kubernetes_token}\" bash /tmp/scw-install.sh slave"
   }
 }
 

@@ -24,4 +24,5 @@ kubernetes_ssh_key_path = "./scw"
 
 kubernetes_ssh_public_key_path = "./scw.pub"
 
+kubernetes_token = "xxxxxx.ccccccccccccccc"
 

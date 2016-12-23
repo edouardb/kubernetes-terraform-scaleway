@@ -11,6 +11,8 @@ Clone or download repo.
 
 Copy `sample.terraform.tfvars` to `terraform.tfvars` and insert your variables.
 
+To generate your kubernetes cluster token, run `python -c 'import random; print "%0x.%0x" % (random.SystemRandom().getrandbits(3*8), random.SystemRandom().getrandbits(8*8))'` and set the kubernetes_token variable.
+
 
 ```bash
 $ brew update && brew install kubectl terraform

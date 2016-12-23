@@ -53,6 +53,11 @@ variable "kubernetes_slave_count" {
   default = "4"
 }
 
+variable "kubernetes_token" {
+  description = "Token used to secure cluster boostrap"
+  default = "cef4cf.a9e2d6e46c2d4d49"
+}
+
 variable "kubernetes_ssh_public_key_path" {
   description = "Path to your public SSH key path"
   default = "./scw.pub"
