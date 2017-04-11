@@ -1,6 +1,6 @@
 provider "scaleway" {
   organization = "${var.organization_key}"
-  access_key = "${var.secret_key}"
+  token = "${var.secret_key}"
   region = "${var.region}"
 }
 

@@ -23,17 +23,16 @@ do
       PUBLIC_IP=\$(scw-metadata --cached PUBLIC_IP_ADDRESS)
       PRIVATE_IP=\$(scw-metadata --cached PRIVATE_IP)
 
+      kubeadm --token=\$KUBERNETES_TOKEN --apiserver-advertise-address=\$PUBLIC_IP --service-dns-domain=\$SUID.pub.cloud.scaleway.com init
 
-      kubeadm --token=\$KUBERNETES_TOKEN --api-advertise-addresses=\$PUBLIC_IP --api-external-dns-names=\$SUID.pub.cloud.scaleway.com init
-      kubectl create -f https://rawgit.com/kubernetes/dashboard/master/src/deploy/kubernetes-dashboard.yaml
-      kubectl create -f http://docs.projectcalico.org/v2.0/getting-started/kubernetes/installation/hosted/kubeadm/calico.yaml
+      KUBECONFIG=/etc/kubernetes/admin.conf kubectl create -f http://docs.projectcalico.org/v2.1/getting-started/kubernetes/installation/hosted/kubeadm/calico.yaml
       git clone https://github.com/kubernetes/heapster.git
-      kubectl create -f heapster/deploy/kube-config/influxdb/
-      kubectl create -f https://rawgit.com/kubernetes/dashboard/master/src/deploy/kubernetes-dashboard.yaml
+      KUBECONFIG=/etc/kubernetes/admin.conf kubectl create -f heapster/deploy/kube-config/influxdb/
+      KUBECONFIG=/etc/kubernetes/admin.conf kubectl create -f https://rawgit.com/kubernetes/dashboard/master/src/deploy/kubernetes-dashboard.yaml
       break
       ;;
     'slave')
-      kubeadm join --token \$KUBERNETES_TOKEN $MASTER_00
+      kubeadm join --token \$KUBERNETES_TOKEN $MASTER_00:6443
       break
       ;;
  esac
