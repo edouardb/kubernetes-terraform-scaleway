@@ -25,10 +25,8 @@ do
 
       kubeadm --token=\$KUBERNETES_TOKEN --apiserver-advertise-address=\$PUBLIC_IP --service-dns-domain=\$SUID.pub.cloud.scaleway.com init
 
-      KUBECONFIG=/etc/kubernetes/admin.conf kubectl create -f http://docs.projectcalico.org/v2.1/getting-started/kubernetes/installation/hosted/kubeadm/calico.yaml
-      git clone https://github.com/kubernetes/heapster.git
-      KUBECONFIG=/etc/kubernetes/admin.conf kubectl create -f heapster/deploy/kube-config/influxdb/
-      KUBECONFIG=/etc/kubernetes/admin.conf kubectl create -f https://rawgit.com/kubernetes/dashboard/master/src/deploy/kubernetes-dashboard.yaml
+      KUBECONFIG=/etc/kubernetes/admin.conf kubectl create -f http://docs.projectcalico.org/v2.3/getting-started/kubernetes/installation/hosted/kubeadm/1.6/calico.yaml
+      KUBECONFIG=/etc/kubernetes/admin.conf kubectl create -f https://git.io/kube-dashboard
       break
       ;;
     'slave')
